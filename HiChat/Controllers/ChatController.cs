@@ -16,7 +16,9 @@ namespace HiChat.Controllers
             _service = service;
         }
 
-        [HttpPost("/register")]
+
+        [HttpPost]
+        [Route("register")]
         public IActionResult Register(UserDTO user)
         {
             if (user == null)

@@ -8,11 +8,11 @@ namespace Services.ChatService
 {
     public class ChatServe
     {
-        private readonly Dictionary<string, Guid?> Users;
+        private readonly Dictionary<string, string?> Users;
 
         public ChatServe()
         {
-            Users=new Dictionary<string, Guid?>();
+            Users=new Dictionary<string, string?>();
         }
 
         public bool AddUser(string name)
@@ -23,13 +23,13 @@ namespace Services.ChatService
                 {
                     return false;
                 }
-                Users.Add(name.ToLower(), new Guid());
+                Users.Add(name.ToLower(), null);
                 return true;
             }
 
         }
 
-      /*  public void AddConnectionId(string name, Guid connectionId)
+       public void AddConnectionId(string name, string connectionId)
         {
             lock (Users)
             {
@@ -39,12 +39,12 @@ namespace Services.ChatService
                 }
             }
         }
-      */
+      
         public string GetUserNameByConnectionId(string connectionId)
         {
             lock (Users)
             {
-                Guid? id = Guid.Parse(connectionId);
+                string? id =connectionId;
                 return Users.FirstOrDefault(x => x.Value == id).Key;
                 
             }
@@ -55,16 +55,16 @@ namespace Services.ChatService
             lock (Users)
             {
                 
-                return Users.FirstOrDefault(x => x.Key == Name).Value.ToString();
+                return Users.FirstOrDefault(x => x.Key == Name).Value;
 
             }
         }
 
-        public bool RemoveUserById(Guid id)
+        public bool RemoveUserByName(string name)
         {
             lock (Users)
             {
-               var i=Users.FirstOrDefault(x => x.Value == id).Key;
+               var i=Users.FirstOrDefault(x => x.Key == name).Key;
                 if (!(i == null))
                 {
                     Users.Remove(i);
@@ -74,11 +74,11 @@ namespace Services.ChatService
             }
         }
 
-        public List<string> GetUsers()
+        public string[] GetUsers()
         {
             lock (Users)
             {
-                return Users.OrderBy(x => x.Key).Select(x => x.Key).ToList();
+                return Users.OrderBy(x => x.Key).Select(x => x.Key).ToArray();
             }
         }
     }
