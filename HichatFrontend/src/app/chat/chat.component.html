@@ -1,0 +1,53 @@
+
+<div class="row">
+  <div class="col-lg-2">
+    <div class="d-grid">
+      <button class="btn btn-primary btn-block" type="button" (click)="backHome()">
+        Back to home
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-lg-2">
+    <div class="card border-secondary mb-2">
+      <div class="card-header h5 text-muted text-center">Who's online </div>
+        <div class="card-body" style="min-height: 325.2px;">
+        <div class="row mt-1" *ngFor="let User of _client.onliners">
+          <div class="col">
+            <div class="d-grid">
+              <button type="button" class="btn btn-success card-text btn-block"
+              [ngClass]="{'btn-success':User.toLowerCase()==_client.currentUser.toLowerCase(),
+              'btn-dark':(User.toLowerCase()!=_client.currentUser.toLowerCase())}"
+              [disabled]="User.toLowerCase()==_client.currentUser.toLowerCase()"
+              *ngIf="User.toLowerCase()==_client.currentUser.toLowerCase()">
+                You
+              </button>
+              <button type="button" class="btn btn-success card-text btn-block"
+              [ngClass]="{'btn-success':User.toLowerCase()==_client.currentUser.toLowerCase(),
+              'btn-dark':(User.toLowerCase()!=_client.currentUser.toLowerCase())}"
+              [disabled]="User.toLowerCase()==_client.currentUser.toLowerCase()"
+              *ngIf="User.toLowerCase()!=_client.currentUser.toLowerCase()" (dblclick)="openChat(User)">
+                {{User}}
+              </button>
+            </div>
+          </div>
+
+        </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-lg-9">
+      <div class="card border-secondary mb-2">
+        <div class="card-header h3 text-muted text-center"><strong>Group Chat</strong></div>
+          <div class="card-body min-height:320px">
+          <app-message-comp [messages]="_client.messages"></app-message-comp>
+          </div>
+          <app-text-input (emitter)="sendMessage($event)"></app-text-input>
+        </div>
+      </div>
+    </div>
+

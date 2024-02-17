@@ -1,0 +1,7 @@
+<div style="overflow-y:auto; height:240px;">
+  <p class="card-text" *ngFor="let message of messages">
+    <span class="text-primary" *ngIf="_client.currentUser!=message.from"><i>{{message.from}}: </i></span>
+    <span class="text-primary" *ngIf="_client.currentUser==message.from"> <i>You: </i></span>
+    <span class="ml-1">{{message.message}}</span></p>
+
+</div>
