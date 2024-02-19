@@ -20,9 +20,10 @@ builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(build =>
     {
-        build.WithOrigins("*");
+        build.AllowAnyOrigin();
         build.AllowAnyHeader();
         build.WithMethods("GET", "POST", "PUT", "DELETE");
+        
         
        
     });
