@@ -67,7 +67,7 @@ namespace Hubs
             string privateGroupName = GroupName(from,to);
             await Clients.Groups(privateGroupName).SendAsync("ClosePChat");
             await Groups.RemoveFromGroupAsync(Context.ConnectionId, privateGroupName);
-             string toId=_service.GetUserNameByConnectionId(to);
+             string? toId=_service.GetUserIdByConnectionName(to);
             await Groups.RemoveFromGroupAsync(toId, privateGroupName);
         }
 

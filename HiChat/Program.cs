@@ -45,7 +45,10 @@ app.UseCors();
 app.UseHttpsRedirection();
 app.UseRouting();
 app.UseAuthorization();
+app.UseDefaultFiles();
+app.UseStaticFiles();
 app.MapControllers();
 app.MapHub<ChatHub>("/chat");
+app.MapFallbackToController("Index", "FallBack");
 app.Run();
 
