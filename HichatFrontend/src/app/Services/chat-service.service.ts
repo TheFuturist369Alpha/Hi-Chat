@@ -65,6 +65,7 @@ public chatInitiated:boolean=false;
             this.chatConnect?.on("ClosePChat", (message: Message)=>{
                this.chatInitiated=false;
                this.modalServe.dismissAll();
+               this.pMessages=[];
                 });
    }
 

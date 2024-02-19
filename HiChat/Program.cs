@@ -20,10 +20,10 @@ builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(build =>
     {
-        build.WithOrigins("http://localhost:4200");
+        build.WithOrigins("*");
         build.AllowAnyHeader();
         build.WithMethods("GET", "POST", "PUT", "DELETE");
-        build.AllowCredentials();
+        
        
     });
 
